@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fully Functional Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: blueviolet;
+        }
+        .playlist-item {
+            margin-bottom: 20px;
+            text-align: center; /* Center align content */
+        }
+        .playlist-item img {
+            cursor: pointer;
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center align controls */
+            margin-top: 10px;
+        }
+        .song-info {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fully Functional Music Player</h1>
+
+        <div class="playlist-item" id="panja">
+            <img src="./panja.jpeg" onclick="changePlaylist('panja')">
+            <details>
+                <summary>Panja Playlist</summary>
+                <audio id="audio-player-panja" controls>
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="audio-controls">
+                    <button onclick="previousSong('panja')">Previous</button>
+                    <button onclick="playPause('panja')">Play/Pause</button>
+                    <button onclick="nextSong('panja')">Next</button>
+                    <input type="range" id="volume-panja" min="0" max="1" step="0.1" value="1" onchange="setVolume('panja', this.value)">
+                </div>
+                <div class="song-info">
+                    <p id="song-name-panja">Song Name</p>
+                    <p id="artist-name-panja">Artist Name</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="playlist-item" id="srimanthudu">
+            <img src="./srimanthudu.jpeg" onclick="changePlaylist('srimanthudu')">
+            <details>
+                <summary>Srimanthudu Playlist</summary>
+                <audio id="audio-player-srimanthudu" controls>
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="audio-controls">
+                    <button onclick="previousSong('srimanthudu')">Previous</button>
+                    <button onclick="playPause('srimanthudu')">Play/Pause</button>
+                    <button onclick="nextSong('srimanthudu')">Next</button>
+                    <input type="range" id="volume-srimanthudu" min="0" max="1" step="0.1" value="1" onchange="setVolume('srimanthudu', this.value)">
+                </div>
+                <div class="song-info">
+                    <p id="song-name-srimanthudu">Song Name</p>
+                    <p id="artist-name-srimanthudu">Artist Name</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="playlist-item" id="mirchi">
+            <img src="./mirchi.jpeg" onclick="changePlaylist('mirchi')">
+            <details>
+                <summary>Mirchi Playlist</summary>
+                <audio id="audio-player-mirchi" controls>
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="audio-controls">
+                    <button onclick="previousSong('mirchi')">Previous</button>
+                    <button onclick="playPause('mirchi')">Play/Pause</button>
+                    <button onclick="nextSong('mirchi')">Next</button>
+                    <input type="range" id="volume-mirchi" min="0" max="1" step="0.1" value="1" onchange="setVolume('mirchi', this.value)">
+                </div>
+                <div class="song-info">
+                    <p id="song-name-mirchi">Song Name</p>
+                    <p id="artist-name-mirchi">Artist Name</p>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <script>
+        const playlist = {
+            panja: [
+                { name: 'Anukoneledhuga', artist: 'Artist 1', file: './panja/Anukoneledhuga.mp3' },
+                { name: 'Ela Ela', artist: 'Artist 2', file: './panja/Ela Ela.mp3' },
+                { name: 'Kshanam Kshanam', artist: 'Artist 3', file: './panja/Kshanam Kshanam.mp3' },
+                { name: 'Panja', artist: 'Artist 4', file: './panja/panja.mp3' },
+                { name: 'Paparayudu', artist: 'Artist 5', file: './panja/Paparayudu.mp3' },
+                { name: 'Veyira Cheyyi', artist: 'Artist 6', file: './panja/Veyira Cheyyi.mp3' }
+            ],
+            srimanthudu: [
+                { name: 'Charuseela', artist: 'Artist 7', file: './srimantudu/Charuseela.mp3' },
+                { name: 'Dhimmathirigae', artist: 'Artist 8', file: './srimantudu/Dhimmathirigae.mp3' },
+                { name: 'Jaago', artist: 'Artist 9', file: './srimantudu/Jaago.mp3' },
+                { name: 'Jatha kalisey', artist: 'Artist 10', file: './srimantudu/Jatha kalisey.mp3' },
+                { name: 'Rama Rama', artist: 'Artist 11', file: './srimantudu/Rama Rama.mp3' },
+                { name: 'Srimanthuda', artist: 'Artist 12', file: './srimantudu/Srimanthuda.mp3' }
+            ],
+            mirchi: [
+                { name: 'Chitti Aayire', artist: 'Artist 13', file: './mirchi/Chitti Aayire.mp3' },
+                { name: 'Guchchi Guchchi', artist: 'Artist 14', file: './mirchi/Guchchi Guchchi.mp3' },
+                { name: 'Love Me', artist: 'Artist 15', file: './mirchi/Love Me.mp3' },
+                { name: 'Sudu Sude', artist: 'Artist 16', file: './mirchi/Sudu Sude.mp3' },
+                { name: 'Talaiva', artist: 'Artist 17', file: './mirchi/Talaiva.mp3' }
+            ]
+        };
+
+        let currentPlaylist; // Variable to hold current playlist
+        let currentSongIndex = 0; // Variable to hold current song index
+
+        // Initialize with the first playlist (panja)
+        changePlaylist('panja');
+
+        // Function to change playlist
+        function changePlaylist(playlistName) {
+            currentPlaylist = playlist[playlistName];
+            currentSongIndex = 0; // Start from the first song
+            loadSong(playlistName);
+        }
+
+        // Function to load a song from the playlist
+        function loadSong(playlistName) {
+            const song = currentPlaylist[currentSongIndex];
+            const audioPlayer = document.getElementById(`audio-player-${playlistName}`);
+            const songNameElement = document.getElementById(`song-name-${playlistName}`);
+            const artistNameElement = document.getElementById(`artist-name-${playlistName}`);
+
+            audioPlayer.src = song.file;
+            songNameElement.textContent = song.name;
+            artistNameElement.textContent = song.artist;
+            audioPlayer.play();
+        }
+
+        // Function to play or pause the audio
+        function playPause(playlistName) {
+            const audioPlayer = document.getElementById(`audio-player-${playlistName}`);
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        // Function to play the next song
+        function nextSong(playlistName) {
+            currentSongIndex = (currentSongIndex + 1) % currentPlaylist.length;
+            loadSong(playlistName);
+        }
+
+        // Function to play the previous song
+        function previousSong(playlistName) {
+            currentSongIndex = (currentSongIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+            loadSong(playlistName);
+        }
+
+        // Function to set the volume of the audio player
+        function setVolume(playlistName, volume) {
+            const audioPlayer = document.getElementById(`audio-player-${playlistName}`);
+            audioPlayer.volume = volume;
+        }
+    </script>
+</body>
+</html>
+

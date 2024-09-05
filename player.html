@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fully Functional Music Player</title>
+    <style>
+      body{
+        background-color: black
+      }
+      h1{
+        background-color: white;
+        text-align: center;
+      }
+      table{
+        background-color: white;
+      }
+     #allsongs{
+      padding: 100px;
+     }
+     #song1,#song2,#song3,#song4,#song5{
+      display: inline-block;
+     }
+
+
+
+  
+
+
+    
+    </style>
+  </head>
+  <body>
+
+
+    <h1>Fully Functional Music Player</h1>
+    <div id="allsongs">
+
+    <!-- PANJA  -->
+    <div id="song1">
+      <details>
+        <summary>
+          <img src="./panja.jpeg" alt="Album Cover" width="200"/>
+        </summary>
+        <table></table>
+      </details>
+    </div>
+
+    <!--  MIRCHI -->
+    <div id="song2">
+      <details>
+        <summary>
+          <img src="./mirchi.jpeg" alt="Album Cover" width="215"/>
+        </summary>
+        <table></table>
+      </details>
+    </div>
+
+
+    <!--SRIMANTHUDU-->
+    <div id="song3">
+      <details>
+        <summary>
+          <img src="./srimanthudu.jpeg" alt="Album Cover" width="215"/>
+        </summary>
+        <table></table>
+      </details>
+    </div>
+
+
+    <!--ARAVINDASAMETHA-->
+    <div id="song4">
+      <details>
+        <summary>
+          <img src="./Aravindhasametha.jpeg" alt="Album Cover" width="305"/>
+        </summary>
+        <table></table>
+      </details>
+    </div>
+
+
+
+   <!--Rangasthalam-->
+    <div id="song5">
+      <details>
+        <summary>
+          <img src="./Rangasthalam.jpeg" alt="Album Cover" width="215"/>
+        </summary>
+        <table></table>
+      </details>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+      //..................SONG1.............................................//
+      let album = [
+          { id: 1, name: 'Anukoneledhuga',  file: './panja/Anukoneledhuga.mp3' },
+          { id: 2, name: 'Ela Ela',  file: './panja/Ela Ela.mp3' },
+          { id: 3, name: 'Kshanam Kshanam',  file: './panja/Kshanam Kshanam.mp3' },
+          { id: 4, name: 'Panja',  file: './panja/panja.mp3' },
+          { id: 5, name: 'Paparayudu',     file: './panja/Paparayudu.mp3' },
+          { id: 6, name: 'Veyira Cheyyi',  file: './panja/Veyira Cheyyi.mp3' }
+      ];
+
+
+
+      function panja() {
+          let table = document.getElementsByTagName("table");
+
+          for (let i = 0; i < album.length; i++) {
+              let currentSongIndex = i;
+              let tr = document.createElement("tr");
+
+              let td1 = document.createElement("td");
+              td1.innerText = album[i].id;
+
+              let td2 = document.createElement("td");
+              td2.innerText = album[i].name;
+
+              let td3 = document.createElement("td");
+              let aud = document.createElement("audio");
+              aud.controls = true;
+              aud.src = album[i].file;
+              td3.appendChild(aud);
+
+              let td4 = document.createElement("td");
+              let prevBtn = document.createElement("button");
+              prevBtn.innerText = "Previous";
+              prevBtn.addEventListener("click", function () {
+                  if (currentSongIndex > 0) {
+                      aud.src=album[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex--;
+                  } else {
+                      aud.src=album[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = album.length - 1;
+                  }
+                  aud.src = album[currentSongIndex].file;
+                  aud.play();
+              });
+
+              let nextBtn = document.createElement("button");
+              nextBtn.innerText = "Next";
+              nextBtn.addEventListener("click", function () {
+                  if (currentSongIndex < album.length - 1) {
+                      aud.src=album[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex++;
+                  } else {
+                      aud.src=album[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = 0;
+                  }
+                  aud.src = album[currentSongIndex].file;
+                  aud.play();
+              });
+
+              td4.appendChild(prevBtn);
+              td4.appendChild(nextBtn);
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+
+              table[0].appendChild(tr);
+              //table[1].appendChild(tr);
+          }
+      }
+      panja();
+
+
+
+      //.....................SONG 2...........................................//
+      let album2 = [
+          { id: 1, name: 'Chitti Aayire',  file: './mirchi/Chitti Aayire.mp3' },
+          { id: 2, name: 'Guchchi Guchchi',  file: './mirchi/Guchchi Guchchi.mp3' },
+          { id: 3, name: 'Love me',  file: './mirchi/Love Me.mp3' },
+          { id: 4, name: 'Sude Sude',  file: './mirchi/Sudu Sude.mp3' },
+          { id: 5, name: 'Talaiva',     file: './mirchi/Talaiva.mp3' },
+          
+      ];
+
+
+
+      function mirchi() {
+          let table = document.getElementsByTagName("table");
+
+          for (let i = 0; i < album2.length; i++) {
+              let currentSongIndex = i;
+              let tr = document.createElement("tr");
+
+              let td1 = document.createElement("td");
+              td1.innerText = album2[i].id;
+
+              let td2 = document.createElement("td");
+              td2.innerText = album2[i].name;
+
+              let td3 = document.createElement("td");
+              let aud = document.createElement("audio");
+              aud.controls = true;
+              aud.src = album2[i].file;
+              td3.appendChild(aud);
+
+              let td4 = document.createElement("td");
+              let prevBtn = document.createElement("button");
+              prevBtn.innerText = "Previous";
+              prevBtn.addEventListener("click", function () {
+                  if (currentSongIndex > 0) {
+                      aud.src=album2[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex--;
+                  } else {
+                      aud.src=album2[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = album2.length - 1;
+                  }
+                  aud.src = album2[currentSongIndex].file;
+                  aud.play();
+              });
+
+              let nextBtn = document.createElement("button");
+              nextBtn.innerText = "Next";
+              nextBtn.addEventListener("click", function () {
+                  if (currentSongIndex < album2.length - 1) {
+                      aud.src=album2[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex++;
+                  } else {
+                      aud.src=album2[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = 0;
+                  }
+                  aud.src = album2[currentSongIndex].file;
+                  aud.play();
+              });
+
+              td4.appendChild(prevBtn);
+              td4.appendChild(nextBtn);
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+
+              table[1].appendChild(tr);
+              
+          }
+      }
+      mirchi();
+
+
+
+      //...........................SONG 3.......................................//
+      let album3 = [
+          { id: 1, name: 'Charuseela',  file: './srimantudu/Charuseela.mp3' },
+          { id: 2, name: 'Dhimmathirigae',  file: './srimantudu/Dhimmathirigae.mp3' },
+          { id: 3, name: 'Jaago',  file: './srimantudu/Jaago.mp3' },
+          { id: 4, name: 'Jatha kalisey',  file: './srimantudu/Jatha kalisey.mp3' },
+          { id: 5, name: 'Rama Rama',     file: './srimantudu/Rama Rama.mp3' },
+          { id: 6, name: 'Srimanthuda',  file: './srimantudu/Srimanthuda.mp3' }
+      ];
+
+
+
+      function srimanthudu() {
+          let table = document.getElementsByTagName("table");
+
+          for (let i = 0; i < album3.length; i++) {
+              let currentSongIndex = i;
+              let tr = document.createElement("tr");
+
+              let td1 = document.createElement("td");
+              td1.innerText = album3[i].id;
+
+              let td2 = document.createElement("td");
+              td2.innerText = album3[i].name;
+
+              let td3 = document.createElement("td");
+              let aud = document.createElement("audio");
+              aud.controls = true;
+              aud.src = album3[i].file;
+              td3.appendChild(aud);
+
+              let td4 = document.createElement("td");
+              let prevBtn = document.createElement("button");
+              prevBtn.innerText = "Previous";
+              prevBtn.addEventListener("click", function () {
+                  if (currentSongIndex > 0) {
+                      aud.src=album3[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex--;
+                  } else {
+                      aud.src=album3[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = album3.length - 1;
+                  }
+                  aud.src = album3[currentSongIndex].file;
+                  aud.play();
+              });
+
+              let nextBtn = document.createElement("button");
+              nextBtn.innerText = "Next";
+              nextBtn.addEventListener("click", function () {
+                  if (currentSongIndex < album3.length - 1) {
+                      aud.src=album3[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex++;
+                  } else {
+                      aud.src=album3[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = 0;
+                  }
+                  aud.src = album3[currentSongIndex].file;
+                  aud.play();
+              });
+
+              td4.appendChild(prevBtn);
+              td4.appendChild(nextBtn);
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+
+              table[2].appendChild(tr);
+              
+          }
+      }
+      srimanthudu();
+
+
+
+      //..........................SONG 4.............................................//
+      let album4 = [
+          { id: 1, name: 'Anaganaganaga',  file: './Aravindasametha/Anaganaganaga.mp3' },
+          { id: 2, name: 'Peniviti',  file: './Aravindasametha/Peniviti.mp3' },
+          { id: 3, name: 'Reddamma Thalli',  file: './Aravindasametha/Reddamma Thalli .mp3' },
+          { id: 4, name: 'Reddy Ikkada Soodu',  file: './Aravindasametha/Reddy Ikkada Soodu.mp3' },
+          { id: 5, name: 'Yeda Poyindo',     file: './Aravindasametha/Yeda Poyindo.mp3' },
+      ];
+
+
+
+      function Aravindhasametha() {
+          let table = document.getElementsByTagName("table");
+
+          for (let i = 0; i < album4.length; i++) {
+              let currentSongIndex = i;
+              let tr = document.createElement("tr");
+
+              let td1 = document.createElement("td");
+              td1.innerText = album4[i].id;
+
+              let td2 = document.createElement("td");
+              td2.innerText = album4[i].name;
+
+              let td3 = document.createElement("td");
+              let aud = document.createElement("audio");
+              aud.controls = true;
+              aud.src = album4[i].file;
+              td3.appendChild(aud);
+
+              let td4 = document.createElement("td");
+              let prevBtn = document.createElement("button");
+              prevBtn.innerText = "Previous";
+              prevBtn.addEventListener("click", function () {
+                  if (currentSongIndex > 0) {
+                      aud.src=album4[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex--;
+                  } else {
+                      aud.src=album4[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = album4.length - 1;
+                  }
+                  aud.src = album4[currentSongIndex].file;
+                  aud.play();
+              });
+
+              let nextBtn = document.createElement("button");
+              nextBtn.innerText = "Next";
+              nextBtn.addEventListener("click", function () {
+                  if (currentSongIndex < album4.length - 1) {
+                      aud.src=album4[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex++;
+                  } else {
+                      aud.src=album4[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = 0;
+                  }
+                  aud.src = album4[currentSongIndex].file;
+                  aud.play();
+              });
+
+              td4.appendChild(prevBtn);
+              td4.appendChild(nextBtn);
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+
+              table[3].appendChild(tr);
+          }
+      }
+      Aravindhasametha()
+
+
+
+      //..................song5.................................................//
+      let album5 = [
+          { id: 1, name: 'Aa Gattununtaava',  file: './Rsthalam/Aa Gattununtaava.mp3' },
+          { id: 2, name: 'Jigelu Rani',  file: './Rsthalam/Jigelu Rani.mp3' },
+          { id: 3, name: 'Orayyo',  file: './Rsthalam/Orayyo.mp3' },
+          { id: 4, name: 'ranga ranga',  file: './Rsthalam/Ranga Ranga Rangasthalana.mp3' },
+          { id: 5, name: 'Rangamma Mangamma',     file: './Rsthalam/Rangamma Mangamma.mp3' },
+          { id: 6, name: 'Yentha Sakkagunnaave',  file: './Rsthalam/Yentha Sakkagunnaave.mp3' }
+      ];
+
+
+      function rangasthalam() {
+          let table = document.getElementsByTagName("table");
+
+          for (let i = 0; i < album5.length; i++) {
+              let currentSongIndex = i;
+              let tr = document.createElement("tr");
+
+              let td1 = document.createElement("td");
+              td1.innerText = album5[i].id;
+
+              let td2 = document.createElement("td");
+              td2.innerText = album5[i].name;
+
+              let td3 = document.createElement("td");
+              let aud = document.createElement("audio");
+              aud.controls = true;
+              aud.src = album5[i].file;
+              td3.appendChild(aud);
+
+              let td4 = document.createElement("td");
+              let prevBtn = document.createElement("button");
+              prevBtn.innerText = "Previous";
+              prevBtn.addEventListener("click", function () {
+                  if (currentSongIndex > 0) {
+                      aud.src=album5[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex--;
+                  } else {
+                      aud.src=album5[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = album5.length - 1;
+                  }
+                  aud.src = album5[currentSongIndex].file;
+                  aud.play();
+              });
+
+              let nextBtn = document.createElement("button");
+              nextBtn.innerText = "Next";
+              nextBtn.addEventListener("click", function () {
+                  if (currentSongIndex < album5.length - 1) {
+                      aud.src=album5[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex++;
+                  } else {
+                      aud.src=album5[currentSongIndex].file;
+                      aud.pause();
+                      currentSongIndex = 0;
+                  }
+                  aud.src = album5[currentSongIndex].file;
+                  aud.play();
+              });
+
+              td4.appendChild(prevBtn);
+              td4.appendChild(nextBtn);
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+
+              table[4].appendChild(tr);
+              //table[1].appendChild(tr);
+          }
+      }
+      rangasthalam();
+
+    </script>
+  </body>
+</html>
